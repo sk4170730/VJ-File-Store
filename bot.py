@@ -1,3 +1,13 @@
+"""
+SkFileShare Bot - Advanced File Sharing Bot
+Copyright (C) 2025 Your Name / @YourUsername
+
+Licensed under GNU GPLv3
+Source: https://github.com/YourUsername/SkFileShare-Bot
+"""
+
+print("SkFileShare Bot by @YourUsername is starting...")
+# Baki code as usual...
 import os
 import time
 print("Bot Starting...")
