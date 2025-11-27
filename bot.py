@@ -1,7 +1,8 @@
-# Don't Remove Credit @VJ_Bots
-# Subscribe YouTube Channel For Amazing Bot @Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
+import os
+import time
+print("Bot Starting...")
+time.sleep(2)
+print("SkFileShare_bot by YourName is now running!")
 import sys
 import glob
 import importlib
