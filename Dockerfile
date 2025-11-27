@@ -1,16 +1,41 @@
-# Don't Remove Credit @VJ_Bots
-# Subscribe YouTube Channel For Amazing Bot @Tech_VJ
-# Ask Doubt on telegram @KingVJ01
+# Don't Remove Credit @
+# Subscribe YouTube @ | Doubt @
 
-FROM python:3.10.8-slim-buster
+FROM python:3.10-slim-bookworm
 
-RUN apt update && apt upgrade -y
-RUN apt install git -y
-COPY requirements.txt /requirements.txt
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
-RUN cd /
-RUN pip3 install -U pip && pip3 install -U -r requirements.txt
-RUN mkdir /SkFileShare_bot
-WORKDIR /SkFileShare_bot
-COPY . /SkFileShare_bot
+# Update & install only required packages
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends \
+        git \
+        ffmpeg \
+        libsm6 \
+        libxext6 && \
+    rm -rf /var/lib/apt/lists/*
+
+# Create non-root user (security best practice)
+RUN useradd -m -s /bin/bash appuser
+
+# Set work directory
+WORKDIR /app
+
+# Copy only requirements first (better caching)
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Copy bot files
+COPY . .
+
+# Change ownership to non-root user
+RUN chown -R appuser:appuser /app
+USER appuser
+
+# Start bot
 CMD ["python", "bot.py"]
