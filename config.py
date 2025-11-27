@@ -13,7 +13,7 @@ for admin in ADMIN_LIST:
         ADMINS.append(int(admin))
 
 # Database
-DB_URI = environ.get("DB_URI", "mongodb+srv://sk4170730:Sumit@2003@cluster0.d0w1y7n.mongodb.net/?appName=Cluster0")
+DB_URI = environ.get("DB_URI", "mongodb+srv://sk4170730:<db_password>@cluster0.d0w1y7n.mongodb.net/?appName=Cluster0")
 DB_NAME = environ.get("DB_NAME", "filesharebot")   # ← YEH SABSE BADI GALTI THI
 
 # Log Channel
